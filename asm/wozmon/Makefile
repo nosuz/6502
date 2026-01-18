@@ -1,4 +1,4 @@
-all:	wozmon.mon wozmon-serial.mon wozmon-apple1.mon wozmon-pet.mon
+all:	wozmon.mon wozmon-serial.mon wozmon-apple1.mon wozmon-apple2.mon wozmon-pet.mon
 
 wozmon.mon: wozmon.bin
 	bintomon -v `./getaddress wozmon.map` wozmon.bin >wozmon.mon
@@ -26,6 +26,15 @@ wozmon-apple1.bin: wozmon-apple1.o
 
 wozmon-apple1.o: wozmon-apple1.s
 	ca65 -g -l wozmon-apple1.lst wozmon-apple1.s
+
+wozmon-apple2.mon: wozmon-apple2.bin
+	bintomon -v `./getaddress wozmon-apple2.map` wozmon-apple2.bin >wozmon-apple2.mon
+
+wozmon-apple2.bin: wozmon-apple2.o
+	ld65 -C /usr/share/cc65/cfg/none.cfg -vm -m wozmon-apple2.map -o wozmon-apple2.bin wozmon-apple2.o
+
+wozmon-apple2.o: wozmon-apple2.s
+	ca65 -g -l wozmon-apple2.lst wozmon-apple2.s
 
 wozmon-pet.mon: wozmon-pet.bin
 	bintomon -v `./getaddress wozmon-pet.map` wozmon-pet.bin >wozmon-pet.mon
