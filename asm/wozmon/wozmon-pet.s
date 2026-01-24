@@ -22,7 +22,7 @@ IN              = $0200         ;  Input buffer to $027F
 CHRIN           = $FFCF
 CHROUT          = $FFD2
 
-               .org $FF00
+               .org $B000
                .export RESET
 
 RESET:          CLD             ; Clear decimal arithmetic mode.
